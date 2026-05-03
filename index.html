@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google tag (gtag.js) 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KRR5PCWWL6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KRR5PCWWL6');
+</script> -->
+
+  <title>ভোটকেন্দ্রের তালিকা</title>
+  
+  <!-- Bengali Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Noto Sans Bengali', sans-serif;
+      padding: 20px;
+      background: linear-gradient(180deg, #f8f9fa 0%, #ece6e6 100%);
+       background-attachment: fixed;
+      color: #111;
+    }
+/* --- Header (The White Ground) --- */
+.main-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 20px 10px 20px;
+  background: #248f6d; /* This is your white ground */
+  position: sticky;
+  top: 0;
+  z-index: 3000; /* Higher than drawer to hide it initially */
+  box-shadow: 0 2px 10px rgba(227, 224, 224, 0.961);
+}
+.toggle-btn {
+  /* Inverts black to white */
+  filter: brightness(0) invert(1);
+}
+/* --- The Drawer (Hidden behind white ground) --- */
+/* --- Drawer Base Style --- */
+.drawer {
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  top: 0;
+  left: -320px; /* Fully off-screen */
+  background-color: #ffffff;
+  z-index: 4000; /* Ensures it stays above the overlay */
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 10px 0 30px rgba(0,0,0,0.05);
+}
+
+/* Slide movement */
+.drawer.open {
+  transform: translateX(320px);
+}
+
+/* --- Header Section --- */
+.drawer-header {
+  padding: 25px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.drawer-brand {
+  font-family: 'Anuphan', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  color: #333;
+}
+
+.drawer-brand span {
+  color: #28ab7f; /* Brand Green */
+}
+
+.close-btn {
+  background: #f5f5f5;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #888;
+  transition: 0.2s;
+}
+
+.close-btn:hover {
+  background: #ff4d4d;
+  color: white;
+}
+
+/* --- Nav & Items --- */
+.drawer-nav {
+  padding: 20px 15px;
+  flex: 1;
+}
+
+.drawer-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid #eee;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.drawer-text {
+  font-family: 'Noto Sans Bengali', sans-serif;
+  font-size: 15px;
+  color: #444;
+  font-weight: 500;
+}
+
+.drawer-icon {
+  margin-right: 12px;
+  font-size: 18px;
+  width: 24px;
+  text-align: center;
+}
+
+/* Hover State */
+.drawer-item:hover {
+  background: #f1f8f5;
+  border-color: #28ab7f;
+  transform: translateX(5px);
+}
+
+.drawer-item:hover .drawer-text {
+  color: #28ab7f;
+}
+
+/* Special Correction Link Styling */
+.correction-link {
+  background: #fff9f0;
+  border: 1px dashed #f39c12;
+}
+
+.correction-link:hover {
+  background: #f39c12;
+  border-color: #f39c12;
+}
+
+.correction-link:hover .drawer-text {
+  color: white;
+}
+
+/* Dimmed Overlay with Blur */
+#drawerOverlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(4px);
+  z-index: 3500;
+}
+
+/* --- Search Bar Centering --- */
+.search-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.search-input-container {
+  width: 100%;
+  max-width: 600px;
+}
+
+#globalSearch {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #f9f9f9;
+}
+
+/* --- Helper Elements --- */
+.toggle-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  width: 45px;
+}
+
+.header-spacer {
+  width: 45px; /* Ensures search stays centered */
+}
+
+#drawerOverlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(3px);
+  z-index: 3500; /* Between header and opened drawer */
+}
+    /*=======global search begin ============*/
+/* সার্চ কন্টেইনার স্টাইল */
+
+.search-wrapper {
+  position: relative;
+    z-index: 1001;
+  width: 100%;
+}
+
+/* সার্চ ড্রপডাউন বক্স */
+#searchResults {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    max-height: 300px;
+    overflow-y: auto;
+    
+    /* সমাধান এখানে: z-index নেভিগেশন বারের চেয়ে বেশি হতে হবে */
+    z-index: 2000 !important; 
+    
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    display: none;
+}
+
+/* প্রতিটি সার্চ আইটেম */
+.search-item {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.search-item:hover {
+  background: #f1f8f5;
+}
+
+.search-item b {
+  font-size: 14px;
+  color: #333;
+}
+
+.search-item small {
+  color: #777;
+}
+
+/* হাইলাইট করা টেক্সট */
+.highlight {
+  background: #ffeb3b;
+  font-weight: bold;
+}
+/* ডিটেইলস কার্ড কন্টেইনার */
+.details-card {
+    background: white;
+    padding: 16px 0px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    border: 2px solid #28ab7f;
+    margin: 15px 0;
+    /* ফ্লেক্সবক্স ব্যবহার করে কন্টেন্ট সাজানো */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* ক্লোজ বাটন স্টাইল (মোবাইল ও ডেস্কটপ উভয়ের জন্য) */
+.close-details {
+    margin-top: 15px; /* কন্টেন্ট থেকে দূরত্ব নিশ্চিত করবে */
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    width: 100%; /* মোবাইলে এবং বড় স্ক্রিনে সব সময় বক্সের সাথে থাকবে */
+    box-sizing: border-box;
+}
+
+.close-details:hover {
+    background: #c82333;
+}
+
+.close-details:active {
+    transform: scale(0.98); /* ক্লিক করলে সামান্য ছোট হবে (ফিডব্যাক) */
+}
+
+/* ডেস্কটপের জন্য চাইলে বাটনটি ছোট রাখা যায়, তবে মোবাইলে ১০০% ই রাখা ভালো */
+@media (min-width: 769px) {
+    .close-details {
+        width: auto;
+        align-self: flex-end; /* ডানে থাকবে */
+    }
+}
+/*=======global search end ============*/
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: #fff;
+  padding: 6px 8px;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+/* Inline label + select */
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 180px;
+  flex: 1;
+}
+
+.filter-group label {
+  font-weight: 500;
+  font-size: 13px;
+  color: #333;
+  white-space: nowrap;
+}
+
+.filter-group select {
+  flex: 1;
+  padding: 5px 8px;
+  font-size: 13px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+  transition: 0.2s;
+}
+
+.filter-group select:hover,
+.filter-group select:focus {
+  border-color: #28ab7f;
+  box-shadow: 0 0 3px rgba(40,171,127,0.3);
+  outline: none;
+  background: #fff;
+}
+
+/* Responsive: stacked on mobile */
+@media (max-width: 768px) {
+  .filter-container {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .filter-group {
+    min-width: 100%;
+    gap: 4px;
+  }
+}
+
+/* MAIN */
+.main{flex:1;padding:20px}
+
+.center-item{
+  background:#fff;
+  padding:14px;
+  margin-bottom:12px;
+  border-radius:8px;
+  box-shadow:0 1px 4px rgba(0,0,0,.12);
+  transition: background 0.3s, transform 0.2s;
+}
+
+/* Desktop hover effect for cursor */
+@media(min-width:769px){
+  .center-item:hover{
+    background:#e0f7fa;
+    transform: translateY(-2px);
+  }
+}
+
+.center-header{
+  cursor:pointer;
+}
+.center-header b{font-size:15px}
+
+.center-details{
+  display:none;
+  margin-top:12px;
+  border-top:1px dashed #ccc;
+  padding-top:12px;
+}
+
+.detail-block{
+  background:#f9f9f9;
+  padding:12px;
+  border-radius:6px;
+  margin-bottom:10px;
+}
+.detail-block h4{
+  margin:0 0 8px 0;
+  font-size:15px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .app{flex-direction:column}
+  .sidebar{width:100%;box-shadow:none;border-bottom:1px solid #ddd}
+}
+   .navbar {
+    width: 100%;
+    background: #28ab7f;
+    color: white;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .navbar .brand {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  /* Desktop menu */
+  .nav-links {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex: 1;
+  }
+
+  .nav-item {
+    padding: 10px 18px;
+    background: rgba(19, 97, 90, 0.15);
+    border-radius: 8px;
+    transition: 0.3s;
+    text-decoration: none;
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  /* Hover Effect */
+  .nav-item:hover {
+    background: white;
+    color: #1a73e8;
+  }
+
+  /* Mobile hamburger icon */
+  .menu-icon {
+    font-size: 28px;
+    cursor: pointer;
+    display: none;
+    margin-left: 15px;
+  }
+
+  /* Mobile menu 
+  .mobile-menu {
+    display: none;
+    background: #1a73e8;
+    width: 100%;
+    padding-bottom: 10px;
+  }
+
+  .mobile-menu a {
+    display: block;
+    padding: 12px 20px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .mobile-menu a:hover {
+    background: rgba(255,255,255,0.2);
+  }
+*/
+  /* Responsive for mobile 
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+    .menu-icon {
+      display: block;
+    }
+    .navbar {
+      justify-content: space-between;
+    }
+    .mobile-menu.show {
+      display: block;
+    }
+  }
+    h2 {
+      font-weight: 700;
+      margin-bottom: 20px;
+      font-size: 22px;
+     
+    }
+
+    .globalSearch{
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
+
+    .center {
+      background: white;
+      padding: 18px;
+      margin: 12px 0;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      font-size: 16px;
+      line-height: 1.6;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      font-family: 'Noto Sans Bengali', Arial, sans-serif; 
+    }
+
+    .center:hover {
+      background: #e0f7fa;
+      transform: translateY(-2px);
+    }
+
+    .center h3 {
+      margin: 0 0 10px;
+      font-weight: 700;
+      font-size: 18px;
+      font-family: 'Noto Sans Bengali', Arial, sans-serif;
+    }
+
+    .details {
+      display: none;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #ddd;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 8px 14px;
+      margin: 5px 5px 0 0;
+      background: #4285F4;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .btn.directions {
+      background: #0F9D58;
+    }
+
+    .btn.print {
+      background: #597575;
+      margin-bottom: 15px;
+    }
+
+
+    .btn.all {
+      background: #b51d6e;
+      margin-bottom: 15px;
+    }
+*/
+ /* Top Bar */
+    .topbar {
+        width: 100%;
+        padding: 12px;
+        background: #ffffff;
+        border-bottom: 1px solid #ddd;
+        display: flex;
+        justify-content: flex-end;
+        gap: 15px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 100;
+    }
+.login-btn {
+        background: #2196F3;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 15px;
+    }
+
+ /* Small notice block */
+    .notice-block {
+        position: fixed;
+        top: 50px;
+        right: 20px;
+        width: 250px;
+        max-height: 400px;
+        background: #fff;
+        border: 2px solid #007BFF;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        padding: 15px;
+        overflow-y: auto;
+    }
+
+    .notice-block h3 {
+        text-align: center;
+        color: #b14220;
+        margin-top: 0;
+        margin-bottom: 15px;
+        font-size: 18px;
+    }
+
+    .notice-item {
+        background: #f9f9f9;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-left: 4px solid #007BFF;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    .notice-title {
+        font-weight: bold;
+        color: #007BFF;
+        margin-bottom: 5px;
+    }
+
+    .notice-text {
+        color: #555;
+        margin-bottom: 3px;
+    }
+
+    .notice-file {
+        font-size: 12px;
+        color: #888;
+    }
+
+    .notice-date {
+        font-size: 11px;
+        color: #aaa;
+        text-align: right;
+    }
+@media (max-width: 768px) {
+    #toggleNotice {
+        display: block;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        padding: 10px 15px;
+        background: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        z-index: 1001;
+        cursor: pointer;
+    }
+}
+
+    /* Admin panel button */
+    .admin-btn {
+        display: block;
+        width: 200px;
+        margin: 20px auto;
+        padding: 12px;
+        background: #255719;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 6px;
+        transition: 0.3s;
+    }
+
+    .admin-btn:hover {
+        background: #0056b3;
+    }
+/* Add this new CSS block inside the <style> tags */
+
+/* Incident Alert Button */
+.alert-button {
+    position: fixed;
+    bottom: 80px; /* Above the footer */
+    right: 15px;
+    background-color: #dc3545; /* Bright Red */
+    color: white;
+    padding: 15px 20px;
+    border-radius: 50%; /* Makes it a circle */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.2;
+    z-index: 1002; /* Ensure it's above other elements */
+    width: 60px; /* Fixed width/height for circle */
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    
+    /* Animation for visibility */
+    animation: flash 1.5s infinite alternate;
+}
+
+.alert-button:hover {
+    background-color: #c82333; /* Darker red on hover */
+    animation: none; /* Stop flashing on hover */
+}
+
+/* Keyframe animation for flashing effect */
+@keyframes flash {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); }
+    50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(220, 53, 69, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); }
+}
+
+@media (max-width: 768px) {
+    /* Adjust position for mobile, potentially above a toggleNotice button if it exists */
+    .alert-button {
+        bottom: 90px;
+    }
+}
+
+/* Professional Grounded Footer */
+.doict-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95); /* Clean white glass effect */
+    backdrop-filter: blur(10px);
+    border-top: 1px solid #e2e8f0; /* Soft border divider */
+    padding: 8px 20px;
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+}
+
+.doict-footer a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #1b1c1d; /* Professional slate grey */
+    transition: color 0.3s ease;
+}
+
+.doict-footer a:hover {
+    color: #1fa5ae; /* Matches your deep teal highlight */
+}
+
+.doict-footer img {
+    height: 24px;
+    width: auto;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.doict-footer a:hover img {
+    filter: grayscale(0); /* Colors return on hover */
+    opacity: 1;
+}
+
+.doict-footer span {
+    font-family: 'Anuphan', sans-serif; /* Your ultra-clear font */
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+/* On Mobile: Ensure it doesn't cover content */
+@media (max-width: 768px) {
+    .doict-footer {
+        padding: 10px;
+    }
+    .doict-footer span {
+        font-size: 11px;
+    }
+}
+/* মডার্ন বাটন কন্টেইনার */
+.header-text b {
+  font-family: 'Anuphan', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #026e51;
+    line-height: 1.4;
+}
+.center-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-text {
+    flex-grow: 1;
+    cursor: pointer;
+}
+/* স্টাইলিশ রাউন্ড বাটন */
+.action-group {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.round-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px; /* একটু স্কয়ারিশ রাউন্ড - আধুনিক লুক */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.round-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.round-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
+}
+@media (max-width: 768px) {
+    .center-header {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+    .action-group {
+        width: 100%;
+        margin-top: 10px;
+    }
+    .round-btn {
+        flex: 1;
+        width: auto; /* Allow button to grow */
+        height: 40px;
+        gap: 8px;
+    }
+    .btn-label {
+        display: inline; /* Show label on Mobile */
+        font-size: 13px;
+        font-weight: bold;
+    }
+}
+/* কালার প্যালেট */
+.btn-loc { background: linear-gradient(135deg, #34a853, #2d8e47); }
+.btn-dir { background: linear-gradient(135deg, #4285f4, #357abd); }
+.btn-call { background: linear-gradient(135deg, #00c853, #009624); }
+.btn-inactive { 
+    background: #e0e0e0; 
+    cursor: not-allowed; 
+    box-shadow: none;
+}
+.btn-inactive svg { fill: #9e9e9e; }
+
+
+     table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+  th, td { border: 1px solid #1d1a1a; padding: 6px 8px; text-align: left; font-size: 14px; }
+  th { background: #4285F4; color: white; }
+  </style>
+</head>
+
+<body>
+ 
+
+<div id="drawerOverlay" onclick="toggleMenu()"></div>
+
+<header class="main-navbar">
+  <button class="toggle-btn" onclick="toggleMenu()" aria-label="Open Menu">☰</button>
+
+  <div class="search-wrapper">
+    <div class="search-input-container">
+      <input 
+        type="text" 
+        id="globalSearch" 
+        placeholder="🔍 সার্চ করুন (কেন্দ্র/ইউনিয়ন/এলাকা/ভোটার নম্বর)"
+      >
+      <div id="searchResults"></div>
+    </div>
+  </div>
+
+  <div class="header-spacer"></div>
+</header>
+
+<div id="drawerOverlay" onclick="toggleMenu()"></div>
+
+<div id="sideDrawer" class="drawer">
+  <div class="drawer-header">
+    <div class="drawer-brand">Voting<span>Centers BD</span></div>
+    <button class="close-btn" onclick="toggleMenu()">✖</button>
+  </div>
+  
+  <nav class="drawer-nav">
+     <a class="drawer-item correction-link" href="map.html" target="_blank">
+      <span class="drawer-text">কেন্দ্রসমূহ ম্যাপে দেখুন</span>
+    </a>
+     <a class="drawer-item correction-link" href="contact.html" target="_blank">
+      <span class="drawer-text">জরুরি মোবাইল নম্বরসমূহ</span>
+    </a>
+     <a class="drawer-item" href="summary.html" target="_blank">
+      <span class="drawer-text">সারসংক্ষেপ দেখুন</span>
+    </a>
+    <a class="drawer-item" href="notices.html" target="_blank">
+      <span class="drawer-text">গণবিজ্ঞপ্তি</span>
+    </a>
+    <a class="drawer-item" href="#" target="_blank">
+      <span class="drawer-text">কেন্দ্রের তথ্য সংশোধন করুন</span>
+    </a>
+
+    <a class="drawer-item" href="voterno.html" target="_blank">
+      <span class="drawer-text">আপনার ভোটার নম্বর ও কেন্দ্র জানুন</span>
+    </a>
+
+    <a class="drawer-item" onclick="printTable()">
+      <span class="drawer-text">প্রিন্ট/ডাউনলোড</span>
+    </a>
+
+    <a class="drawer-item" href="about.html">
+      <span class="drawer-text">যোগাযোগ</span>
+    </a>
+  </nav>
+</div>
+
+<div id="resultBox" style="margin-top:20px;"></div>
+   
+  <!--  <a href="https://url-shortener.me/2J3J" class="nav-item">ম্যাপে সংযুক্তির আবেদন</a>-->
+   <!-- <a class="nav-item" href="login.html">এডমিন প্যানেল</a>-->
+  </div>
+  <div class="menu-icon" onclick="toggleMenu()">☰</div>
+</div>
+
+<!-- MOBILE MENU -->
+<!-- <div id="mobileMenu" class="mobile-menu"> -->
+ <!--<a href="index.html">🏠</a>-->
+ <!-- <a href="search.html">আপনার কেন্দ্র খুঁজুন</a> -->
+ <!-- <a href="map.html">কেন্দ্রসমূহ ম্যাপে দেখুন</a>
+ <a href="contact.html">জরুরি মোবাইল নম্বরসমুহ</a>-->
+ <!-- <a  href="data_correction/index.html">কেন্দ্রের তথ্য সংশোধন করুন</a>-->
+ <!-- <a href="voterno.html" target="_blank">আপনার ভোটার নম্বর ও কেন্দ্র জানুন</a>-->
+ <!-- <a href="summary.html">সারসংক্ষেপ দেখুন</a>-->
+ <!-- <a href="notices.html" >গণবিজ্ঞপ্তি</a>-->
+<!--  <a href="https://url-shortener.me/2J3J">ম্যাপে সংযুক্তির আবেদন</a>-->
+<!-- </div>-->
+<!-- FILTER SIDEBAR -->
+<div class="filter-container">
+  <div class="filter-group">
+    <label for="districtSelect">জেলা</label>
+    <select id="districtSelect"></select>
+  </div>
+
+  <div class="filter-group">
+    <label for="upazilaSelect">উপজেলা</label>
+    <select id="upazilaSelect"></select>
+  </div>
+
+  <div class="filter-group">
+    <label for="unionSelect">ইউনিয়ন / পৌরসভা</label>
+    <select id="unionSelect"></select>
+  </div>
+</div>
+
+ <h2 id="pageTitle">ভোটকেন্দ্রসমূহ</h2>
+</div>
+
+<div id="resultBox" style="margin-top:20px;"></div>
+<div id="noticeList" style="margin-top:20px;"></div>
+<div id="centersContainer"></div>
+
+
+<script>
+
+function toggleMenu() {
+  const drawer = document.getElementById("sideDrawer");
+  const overlay = document.getElementById("drawerOverlay");
+
+  if (drawer.classList.contains("open")) {
+    drawer.classList.remove("open");
+    overlay.style.display = "none";
+    document.body.style.overflow = "auto";
+  } else {
+    drawer.classList.add("open");
+    overlay.style.display = "block";
+    document.body.style.overflow = "hidden";
+  }
+}
+// LOAD centers_info.json
+
+let districts = [];
+let upazilas = [];
+let unions = [];
+
+let centers=[];
+let presidingData = [];
+/* LOAD DATA */
+Promise.all([
+  fetch("centers_info.json").then(r => r.json()),
+  fetch("presiding.json").then(r => r.json())
+]).then(([centers_info, presiding_info]) => {
+  centers = centers_info;
+  // এখন presidingData তে সব উপজেলার ডাটা থাকবে
+  presidingData = presiding_info; 
+  initDistrict();
+});
+
+/* DISTRICT INIT */
+function initDistrict(){
+  const districts=[...new Set(centers.map(c=>c.district))];
+  districtSelect.innerHTML="";
+  districts.forEach(d=>districtSelect.add(new Option(d,d)));
+  districtSelect.value=districts[0];
+  districtSelect.dispatchEvent(new Event("change"));
+}
+
+/* DISTRICT → UPAZILA */
+districtSelect.onchange=function(){
+  const ups=[...new Set(
+    centers.filter(c=>c.district===this.value).map(c=>c.upazila)
+  )];
+  upazilaSelect.innerHTML="";
+  ups.forEach(u=>upazilaSelect.add(new Option(u,u)));
+  upazilaSelect.value=ups[0];
+  upazilaSelect.dispatchEvent(new Event("change"));
+  
+};
+
+/* UPAZILA → UNION (ALL) */
+
+upazilaSelect.onchange = function() {
+  const selectedUpazila = this.value;
+  
+  const pageTitle = document.getElementById('pageTitle');
+  if (pageTitle) {
+      pageTitle.innerHTML = `ভোটকেন্দ্রসমূহ: <span style="color: #2c3e50;">"${selectedUpazila} উপজেলা"</span>`;
+  }
+
+  const unions = [...new Set(
+    centers.filter(c =>
+      c.district === districtSelect.value &&
+      c.upazila === selectedUpazila
+    ).map(c => c.union)
+  )];
+
+  unionSelect.innerHTML = "";
+  unionSelect.add(new Option("সব ইউনিয়ন", "ALL"));
+  unions.forEach(u => unionSelect.add(new Option(u, u)));
+  unionSelect.value = "ALL";
+  
+  renderList();
+};
+
+unionSelect.onchange=renderList;
+function toBanglaNumber(num) {
+  if (num === null || num === undefined) return '-';
+  const banglaDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+  return num.toString().replace(/\d/g, d => banglaDigits[d]);
+}
+/* RENDER CENTER LIST */
+function renderList(){
+  centersContainer.innerHTML="";
+
+  let list=centers.filter(c=>
+    c.district===districtSelect.value &&
+    c.upazila===upazilaSelect.value
+  );
+
+  if(unionSelect.value!=="ALL"){
+    list=list.filter(c=>c.union===unionSelect.value);
+  }
+
+  if(!list.length){
+    centersContainer.innerHTML="<p>কোন ভোটকেন্দ্র পাওয়া যায়নি</p>";
+    return;
+  }
+
+list.forEach((c,i)=>{
+    // Find the matching presiding officer from presiding.json
+   // সংশোধন: প্রথমে বর্তমান উপজেলার ডাটা খুঁজে বের করুন
+    const upazilaData = presidingData.find(u => u.upazila === c.upazila);
+    
+    // সেই উপজেলার লিস্ট থেকে নির্দিষ্ট কেন্দ্রের ID ম্যাচ করুন
+    const officer = upazilaData ? upazilaData.presiding_officer.find(o => o.id == c.id) : null;
+
+    const hasPhone = officer && officer.mobile;
+    const phone = hasPhone ? officer.mobile : "";
+    const officerName = officer ? officer.name : "এখনো নির্ধারিত হয়নি";
+
+    const div=document.createElement("div");
+    div.className="center-item";
+
+    div.innerHTML=`
+      <div class="center-header">
+        <div class="header-text" onclick="toggleDetails(${i})">
+          <b>${toBanglaNumber(c.id)} নং: ${c.name}</b><br>
+         <small>
+    ${c.union} | ${c.type} 
+    ${c.priority ? ` | <span style="color: ${c.priority === 'সাধারণ' ? 'black' : 'red'}; font-weight: bold;">${c.priority}</span>` : ''}
+  </small>
+        </div>
+        
+        <div class="action-group">
+          <a href="https://www.google.com/maps/search/?api=1&query=${c.lat},${c.lng}" 
+             class="round-btn btn-loc" target="_blank" title="ম্যাপে দেখুন">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+          </a>
+
+          <a href="https://www.google.com/maps/dir/?api=1&destination=${c.lat},${c.lng}" 
+             class="round-btn btn-dir" target="_blank" title="দিকনির্দেশনা">
+            <svg viewBox="0 0 24 24"><path d="M21.71 11.29l-9-9a1 1 0 0 0-1.42 0l-9 9a1 1 0 0 0 0 1.42l9 9a1 1 0 0 0 1.42 0l9-9a1 1 0 0 0 0-1.42zM14 14.5V12h-4v3H8v-4a1 1 0 0 1 1-1h5V7.5L18.5 11 14 14.5z"/></svg>
+          </a>
+
+          <a href="${hasPhone ? 'tel:' + phone : 'javascript:void(0)'}" 
+             class="round-btn ${hasPhone ? 'btn-call' : 'btn-inactive'}" 
+             title="${hasPhone ? 'কল করুন' : 'নম্বর নেই'}">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="center-details" id="details-${i}">
+        <div class="detail-block">
+          <h4>🏫 কেন্দ্রের তথ্য</h4>
+          <p><b>এলাকা:</b> ${(c.area || []).join(", ")}</p>
+          <p><b>বুথ সংখ্যা:</b> স্থায়ী: ${toBanglaNumber(c.booth_permanent)}, অস্থায়ী: ${toBanglaNumber(c.booth_temp)}</p>
+          <p><b>ভোটার বিন্যাস:</b> 
+            পুরুষ: ${toBanglaNumber(c.male)}, 
+            মহিলা: ${toBanglaNumber(c.female)}, 
+            হিজড়া: ${toBanglaNumber(c.third_gender)} 
+          </p>
+          <p><b>মোট ভোটার:</b> ${toBanglaNumber(c.total)} জন</p>
+          <p><b>আসন:</b> ${c.seat}</p>
+        </div>
+
+        ${c.building || c.transport || c.dis_thana || c.geo ? `
+        <div class="detail-block">
+          <h4>🚗 অবকাঠামো ও যোগাযোগ</h4>
+          ${c.building ? `<p><b>স্থাপনার অবস্থা:</b> ${c.building}</p>` : ''}
+          ${c.transport ? `<p><b>যাতায়াত:</b> ${c.transport} ${c.roads ? `(${c.roads} রাস্তা)` : ''}</p>` : ''}
+          ${c.dis_thana ? `<p><b>থানা থেকে দূরত্ব:</b> ${c.dis_thana}</p>` : ''}
+          ${c.geo ? `<p><b>ভৌগোলিক অবস্থা:</b> ${c.geo}</p>` : ''}
+           ${c.record ? `<p><b>অতীত রেকর্ড:</b> ${c.record}</p>` : ''}
+        </div>` : ''}
+
+        <div class="detail-block">
+          <h4>👮 দায়িত্বপ্রাপ্ত কর্মকর্তা</h4>
+          <p><b>প্রিজাইডিং অফিসার:</b> ${officerName}</p>
+          ${hasPhone ? `<p><b>মোবাইল:</b> ${toBanglaNumber(phone)}</p>` : ''}
+        </div>
+      </div>
+      </div>
+    `;
+    centersContainer.appendChild(div);
+  });
+}
+
+/* TOGGLE INLINE DETAILS */
+function toggleDetails(i){
+  const el=document.getElementById("details-"+i);
+  el.style.display = el.style.display==="block" ? "none" : "block";
+}
+
+const searchInput = document.getElementById("globalSearch");
+const searchResults = document.getElementById("searchResults");
+const resultBox = document.getElementById("resultBox");
+
+searchInput.addEventListener("input", function() {
+    const query = this.value.trim().toLowerCase();
+    searchResults.innerHTML = "";
+
+    if (query.length < 2) {
+        searchResults.style.display = "none";
+        return;
+    }
+
+    // ফিল্টারিং
+    const filtered = centers.filter(c =>
+        (c.name && c.name.toLowerCase().includes(query)) ||
+        (c.union && c.union.toLowerCase().includes(query)) ||
+        (c.upazila && c.upazila.toLowerCase().includes(query)) ||
+        (c.area && c.area.some(a => a.toLowerCase().includes(query)))
+    );
+
+    if (filtered.length > 0) {
+        searchResults.style.display = "block";
+        filtered.slice(0, 10).forEach(c => { // সেরা ১০টি রেজাল্ট দেখাবে
+            const div = document.createElement("div");
+            div.className = "search-item";
+            
+            // কি-ওয়ার্ড হাইলাইট করার জন্য
+            const nameHTML = c.name.replace(new RegExp(query, 'gi'), match => `<span class="highlight">${match}</span>`);
+
+            div.innerHTML = `<b>${nameHTML}</b><br><small>${c.union} | ${c.upazila} | ${c.type}</small>`;
+            
+            div.addEventListener("click", () => {
+                showFromSearch(c.id); // আপনার ফাংশন কল হবে
+                searchInput.value = c.name;
+                searchResults.style.display = "none";
+            });
+            searchResults.appendChild(div);
+        });
+    } else {
+        searchResults.innerHTML = "<div class='search-item'>কোনো কেন্দ্র পাওয়া যায়নি</div>";
+        searchResults.style.display = "block";
+    }
+});
+
+// বক্সের বাইরে ক্লিক করলে ড্রপডাউন বন্ধ হবে
+document.addEventListener("click", (e) => {
+    if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+        searchResults.style.display = "none";
+    }
+});
+// Show details function
+function showFromSearch(centerID) {
+    // সার্চ রেজাল্ট কন্টেইনার পরিষ্কার করা
+    searchResults.innerHTML = "";
+    
+    // নির্দিষ্ট কেন্দ্রটি খুঁজে বের করা
+    const c = centers.find(x => x.id == centerID);
+    if(!c) return;
+
+    // কল বাটনের জন্য ডাটা চেক
+    const hasPhone = c.presiding_officer && c.presiding_officer.length > 0 && c.presiding_officer[0].mobile;
+    const phone = hasPhone ? c.presiding_officer[0].mobile : "";
+
+    // রেজাল্ট বক্সে আধুনিক ডিজাইন রেন্ডার করা
+    resultBox.innerHTML = `
+      <div class="center-item" style="border: 2px solid #28ab7f; animation: fadeIn 0.5s;">
+        <div class="center-header">
+            <div class="header-text">
+                <b style="font-size: 18px;">${c.name}</b><br>
+                <small>${c.union} | ${c.upazila}</small>
+            </div>
+            <div class="action-group" style="display: flex; gap: 8px;">
+                <a href="https://www.google.com/maps/search/?api=1&query=${c.lat},${c.lng}" class="round-btn btn-loc" target="_blank">
+                    <svg viewBox="0 0 24 24" width="20" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+                </a>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=${c.lat},${c.lng}" class="round-btn btn-dir" target="_blank">
+                    <svg viewBox="0 0 24 24" width="20" fill="white"><path d="M21.71 11.29l-9-9a1 1 0 0 0-1.42 0l-9 9a1 1 0 0 0 0 1.42l9 9a1 1 0 0 0 1.42 0l9-9a1 1 0 0 0 0-1.42zM14 14.5V12h-4v3H8v-4a1 1 0 0 1 1-1h5V7.5L18.5 11 14 14.5z"/></svg>
+                </a>
+                <a href="${hasPhone ? 'tel:' + phone : 'javascript:void(0)'}" class="round-btn ${hasPhone ? 'btn-call' : 'btn-inactive'}">
+                    <svg viewBox="0 0 24 24" width="20" fill="white"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="center-details" style="display:block; margin-top: 15px;">
+            <div class="detail-block">
+                <h4>কেন্দ্রের তথ্য</h4>
+                <p><b>এলাকা:</b> ${(c.area||[]).join(", ")}</p>
+                <p><b>মোট ভোটার:</b> ${toBanglaNumber(c.total)} (পুরুষ: ${toBanglaNumber(c.male)}, নারী: ${toBanglaNumber(c.female)})</p>
+                <p><b>আসন:</b> ${c.seat}</p>
+            </div>
+      
+        </div>
+        <button class="close-details" onclick="closeDetailsBox()">
+           ✕ বন্ধ করুন
+        </button>
+      </div>
+    `;
+
+    // রেজাল্ট আসার পর স্মুথ স্ক্রল
+    resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+// বক্স বন্ধ করার ফাংশন
+function closeDetailsBox() {
+    resultBox.innerHTML = "";
+   
+}
+
+
+//let allCenters = [];
+
+//async function loadCenters() {
+ // const res = await fetch("centers_info.json");
+ // allCenters = await res.json();
+ // renderCenters(allCenters);
+//}
+
+// Print / Download table
+  function printTable() {
+    let html = `<h2>ভোটকেন্দ্রের তালিকা</h2>`;
+    html += `<table><tr>
+      <th>ক্রমিক</th><th>ভোটকেন্দ্রের নাম</th><th>উপজেলা</th><th>ইউনিয়ন</th><th>এলাকা</th>
+    </tr>`;
+    centers.forEach((c,i)=>{
+      html += `<tr>
+        <td>${i+1}</td>
+        <td>${c.name}</td>
+        <td>${c.upazila || "N/A"}</td>
+        <td>${c.union || "N/A"}</td>
+        <td>${c.area ? c.area.join(", ") : "N/A"}</td> 
+    
+      </tr>`;
+    });
+    html += "</table>";
+    const newWin = window.open("");
+    newWin.document.write(html);
+    newWin.document.close();
+    newWin.print();
+  }
+
+
+
+
+//Notice Board
+
+</script>
+
+<footer class="doict-footer">
+  <a href="http://doict.ishurdi.pabna.gov.bd/bn/site/officer_list/%E0%A6%AE%E0%A7%8B%E0%A6%B8%E0%A6%BE%E0%A6%83-%E0%A6%B9%E0%A6%BE%E0%A6%B8%E0%A6%BF%E0%A6%A8%E0%A7%87-%E0%A6%9C%E0%A6%BE%E0%A6%A8%E0%A7%8D%E0%A6%A8%E0%A6%BE%E0%A6%A4" target="_blank" rel="noopener">
+    <img src="doict-logo.png" alt="DoICT Logo">
+  <span><b>Hasin-E-Jannat, DoICT Ishwardi © 2026</b></span>
+  </a>
+</footer>
+
+
+</body>
+</html>

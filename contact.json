@@ -1,0 +1,497 @@
+[
+{
+  "district": "পাবনা",
+  "upazila": "ঈশ্বরদী",
+  "offices": [
+  {
+    "id": "dc-pabna",
+    "category": "জেলা প্রশাসন",
+    "type": "রিটার্নিং অফিসার",
+    "name": "ড. মো: শাহেদ মোস্তফা",
+    "designation": "জেলা প্রশাসক ও রিটার্নিং অফিসার",
+    "priority": 1,
+    "coverage": "পাবনা-৪ (ঈশ্বরদী-আটঘরিয়া)",
+    "mobile": "01332553401",
+    "email": ""
+  },
+  {
+    "id": "sp-pabna",
+    "category": "পুলিশ প্রশাসন",
+    "type": "পুলিশ কর্মকর্তা",
+    "name": "জনাব মোঃ আনোয়ার জাহিদ",
+    "designation": "পুলিশ সুপার",
+    "priority": 2,
+    "coverage": "পাবনা জেলা",
+    "mobile": "01320128500",
+    "email": ""
+  },
+  {
+    "id": "uno-ishwardi",
+    "category": "উপজেলা প্রশাসন",
+    "type": "সহকারী রিটার্নিং অফিসার",
+    "name": "জনাব মোঃ আরিফুর রহমান",
+    "designation": "উপজেলা নির্বাহী অফিসার",
+    "priority": 3,
+    "coverage": "ঈশ্বরদী উপজেলা",
+    "mobile": "01332853411",
+    "email": ""
+  },
+  {
+    "id": "army-ishwardi",
+    "category": "আইন-শৃঙ্খলা বাহিনী",
+    "type": "সেনাবাহিনী",
+    "name": "মেজর রাহাত উদ্দিন মাহবুব",
+    "designation": "ক্যাম্প কমান্ডার, ঈশ্বরদী আর্মি ক্যাম্প",
+    "priority": 4,
+    "coverage": "ঈশ্বরদী উপজেলা",
+    "mobile": "01325858080",
+    "email": ""
+  },
+  {
+    "id": "bgb-59",
+    "category": "আইন-শৃঙ্খলা বাহিনী",
+    "type": "বিজিবি",
+    "name": "মেজর আব্দুল্লাহ আল আসিফ",
+    "designation": "কোয়ার্টার গার্ড (৫৯ বিজিবি)",
+    "priority": 5,
+    "coverage": "ঈশ্বরদী/পাবনা",
+    "mobile": "01769602601",
+    "email": ""
+  },
+  {
+    "id": "asp-ishwardi",
+    "category": "পুলিশ প্রশাসন",
+    "type": "পুলিশ কর্মকর্তা",
+    "name": "জনাব প্রণব কুমার",
+    "designation": "অতিরিক্ত পুলিশ সুপার, ঈশ্বরদী সার্কেল",
+    "priority": 6,
+    "coverage": "ঈশ্বরদী সার্কেল",
+    "mobile": "01320128551",
+    "email": ""
+  },
+  {
+    "id": "nsi-pabna",
+    "category": "গোয়েন্দা সংস্থা",
+    "type": "এনএসআই কর্মকর্তা",
+    "name": "এ.বি.এম লুৎফুল কবীর",
+    "designation": "উপপরিচালক, এনএসআই",
+    "priority": 7,
+    "coverage": "পাবনা জেলা",
+    "mobile": "01313379741",
+    "email": ""
+  },
+  {
+    "id": "dist-elec-officer",
+    "category": "নির্বাচন অফিস",
+    "type": "নির্বাচন কর্মকর্তা",
+    "name": "জনাব মুহাম্মদ মোশারফ হোসেন",
+    "designation": "সিনিয়র জেলা নির্বাচন অফিসার",
+    "priority": 8,
+    "coverage": "পাবনা জেলা",
+    "mobile": "01550042627",
+    "email": ""
+  },
+  {
+    "id": "acland-ishwardi",
+    "category": "উপজেলা প্রশাসন",
+    "type": "নির্বাহী ম্যাজিস্ট্রেট",
+    "name": "জনাব মোঃ আসাদুজ্জামান সরকার",
+    "designation": "সহকারী কমিশনার (ভূমি)",
+    "priority": 9,
+    "coverage": "ঈশ্বরদী উপজেলা",
+    "mobile": "01332853420",
+    "email": ""
+  },
+  {
+    "id": "elec-officer-ishwardi",
+    "category": "নির্বাচন অফিস",
+    "type": "নির্বাচন কর্মকর্তা",
+    "name": "জনাব শামসুন নাহার ভূঞা",
+    "designation": "উপজেলা নির্বাচন অফিসার",
+    "priority": 10,
+    "coverage": "ঈশ্বরদী উপজেলা",
+    "mobile": "01674221411",
+    "email": "ueoishwardipabna02@gmail.com"
+  },
+  {
+    "id": "oc-ishwardi",
+    "category": "পুলিশ প্রশাসন",
+    "type": "পুলিশ কর্মকর্তা",
+    "name": "জনাব মোঃ মনিরুজ্জামান",
+    "designation": "অফিসার ইনচার্জ (ওসি)",
+    "priority": 11,
+    "coverage": "ঈশ্বরদী থানা",
+    "mobile": "01320128612",
+    "email": ""
+  },
+  {
+    "id": "pourav-ishwardi",
+    "category": "পৌরসভা",
+    "type": "পৌর কর্মকর্তা",
+    "name": "জনাব মোঃ জহুরুল ইসলাম",
+    "designation": "পৌর নির্বাহী কর্মকর্তা",
+    "priority": 12,
+    "coverage": "ঈশ্বরদী পৌরসভা",
+    "mobile": "01711203919",
+    "email": ""
+  },
+  {
+    "id": "ansar-ishwardi",
+    "category": "আইন-শৃঙ্খলা বাহিনী",
+    "type": "আনসার কর্মকর্তা",
+    "name": "জনাব মোঃ আজিজুল ইসলাম",
+    "designation": "উপজেলা আনসার ও ভিডিপি কর্মকর্তা",
+    "priority": 13,
+    "coverage": "ঈশ্বরদী উপজেলা",
+    "mobile": "01730094474",
+    "email": ""
+  },
+  {
+    "id": "nesco-ishwardi",
+    "category": "বিদ্যুৎ বিভাগ",
+    "type": "প্রকৌশলী",
+    "name": "জনাব আব্দুন নুর",
+    "designation": "নির্বাহী প্রকৌশলী, নেসকো পিএলসি",
+    "priority": 14,
+    "coverage": "ঈশ্বরদী উপজেলা",
+    "mobile": "01755582331",
+    "email": ""
+  },
+  {
+    "id": "pbs-ishwardi",
+    "category": "বিদ্যুৎ বিভাগ",
+    "type": "প্রকৌশলী",
+    "name": "মুহাম্মদ জাহাঙ্গীর আলম",
+    "designation": "ডিজিএম, পল্লী বিদ্যুৎ সমিতি",
+    "priority": 15,
+    "coverage": "দাশুড়িয়া/ঈশ্বরদী",
+    "mobile": "01769400239",
+    "email": ""
+  },
+  {
+    "id": "fire-ishwardi",
+    "category": "জরুরী সেবা",
+    "type": "ফায়ার সার্ভিস",
+    "name": "জনাব মীর আমিরুল ইসলাম",
+    "designation": "স্টেশন অফিসার, ফায়ার সার্ভিস",
+    "priority": 16,
+    "coverage": "ঈশ্বরদী উপজেলা",
+    "mobile": "01717678792",
+    "email": ""
+  }
+]
+},
+{
+ 
+    "upazila": "সুজানগর",
+       "district": "পাবনা",
+    "offices": [
+      {
+        "id": "Returning",
+        "category": "নির্বাচন কেন্দ্র",
+        "type": "রিটার্নিং",
+        "designation": "রিটার্নিং কর্মকর্তা ও জেলা প্রশাসক",
+        "priority": 1,
+        "coverage": "সুজানগর উপজেলা",
+        "mobile": "01332853401",
+        "email": "dcpabna@mopa.gov.bd"
+      },
+      {
+        "id": "Ass-Returning",
+        "category": "নির্বাচন কেন্দ্র",
+        "type": "সহকারী রিটার্নিং",
+        "designation": "সহকারী রিটার্নিং ও উপজেলা নির্বাহী অফিসার, সুজানগর",
+        "priority": 1,
+        "coverage": "সুজানগর",
+        "mobile": "01332853418",
+        "email": "unosujanagar@gmail.com"
+      },
+      {
+        "id": "sec-asp",
+        "category": "আইন-শৃঙ্খলা",
+        "type": "অতিরিক্ত পুলিশ সুপার",
+        "designation": "অতিরিক্ত পুলিশ সুপার,সুজানগর সার্কেল",
+        "priority": 1,
+        "coverage": "সুজানগর পৌরসভা ও সব ইউনিয়ন",
+        "mobile": "01795341106",
+        "email": "asp.sujanagar@police.gov.bd"
+      },
+      {
+        "id": "sec-oc",
+        "category": "আইন-শৃঙ্খলা",
+        "type": "ওসি",
+        "designation": "ভারপ্রাপ্ত কর্মকর্তা, সুজানগর থানা",
+        "priority": 1,
+        "coverage": "সুজানগর থানা এলাকা",
+        "mobile": "01320128742",
+        "email": "oc.sujanagar@police.gov.bd"
+      },
+      {
+        "id": "elec-officer",
+        "category": "নির্বাচন অফিস",
+        "type": "নির্বাচন কর্মকর্তা",
+        "designation": "উপজেলা নির্বাচন কর্মকর্তা",
+        "priority": 1,
+        "coverage": "সুজানগর উপজেলা",
+        "mobile": "01518393050",
+        "email": "sagorgebdu@gmail.com"
+      },
+      {
+        "id": "fire-service",
+        "category": "জরুরি সেবা",
+        "type": "ফায়ার সার্ভিস",
+        "designation": "স্টেশন অফিসার, সুজানগর ফায়ার স্টেশন",
+        "priority": 2,
+        "coverage": "সুজানগর",
+        "mobile": "01917260172",
+        "email": "sujanagarsofscd@gmail.com"
+      }
+    ]
+  },
+ {
+  "district": "পাবনা",
+  "upazila": "আটঘরিয়া",
+  "offices": [
+    {
+      "id": "Returning",
+      "category": "নির্বাচন কেন্দ্র",
+      "type": "রিটার্নিং",
+      "designation": "রিটার্নিং কর্মকর্তা ও জেলা প্রশাসক",
+      "priority": 1,
+      "coverage": "আটঘরিয়া উপজেলা",
+      "mobile": "01332853401",
+      "email": "dcpabna@mopa.gov.bd"
+    },
+    {
+      "id": "Ass-Returning",
+      "category": "নির্বাচন কেন্দ্র",
+      "type": "সহকারী রিটার্নিং",
+      "designation": "সহকারী রিটার্নিং ও উপজেলা নির্বাহী অফিসার, আটঘরিয়া",
+      "priority": 1,
+      "coverage": "আটঘরিয়া উপজেলা",
+      "mobile": "01332853412",
+      "email": "unoatghoria@mopa.gov.bd"
+    },
+    {
+      "id": "sec-oc",
+      "category": "আইন-শৃঙ্খলা",
+      "type": "ওসি",
+      "designation": "ভারপ্রাপ্ত কর্মকর্তা, আটঘরিয়া থানা",
+      "priority": 1,
+      "coverage": "আটঘরিয়া থানা এলাকা",
+      "mobile": "01320128638",
+      "email": "ocatghoriapabna@gmail.com"
+    },
+    {
+      "id": "elec-officer",
+      "category": "নির্বাচন অফিস",
+      "type": "নির্বাচন কর্মকর্তা",
+      "designation": "উপজেলা নির্বাচন কর্মকর্তা",
+      "priority": 1,
+      "coverage": "আটঘরিয়া উপজেলা",
+      "mobile": "01550042630",
+      "email": "atghoria.ueo7605@gmail.com"
+    },
+    {
+      "id": "fire-service",
+      "category": "জরুরি সেবা",
+      "type": "ফায়ার সার্ভিস",
+      "designation": "স্টেশন অফিসার, আটঘরিয়া ফায়ার স্টেশন",
+      "priority": 2,
+      "coverage": "আটঘরিয়া",
+      "mobile": "01621578042"
+    }
+  ]
+},
+  {
+  "district": "পাবনা",
+    "upazila": "ভাঙ্গুড়া",
+    "offices": [
+  {
+    
+    "id": "Returning",
+    "category": "নির্বাচন কেন্দ্র",
+    "type": "রিটার্নিং",
+    "designation": "রিটার্নিং কর্মকর্তা ও জেলা প্রশাসক",
+    "priority": 1,
+    "coverage": "ভাঙ্গুড়া উপজেলা",
+    "mobile": "1332853401",
+    "email": "dcpabna@mopa.gov.bd"
+  },
+  {
+ 
+    
+    "id": "Ass-Returning",
+    "category": "নির্বাচন কেন্দ্র",
+    "type": "সহকারী রিটার্নিং",
+    "designation": "সহকারী রিটার্নিং ও উপজেলা নির্বাহী অফিসার, ভাঙ্গুড়া",
+    "priority": 1,
+    "coverage": "ভাঙ্গুড়া উপজেলা",
+    "mobile": "01332853414",
+    "email": "unobhangura@mopa.gov.bd"
+  },
+  
+  {
+    "id": "sec-oc",
+    "category": "আইন-শৃঙ্খলা",
+    "type": "ওসি",
+    "designation": "ভারপ্রাপ্ত কর্মকর্তা, ভাঙ্গুড়া থানা",
+    "priority": 1,
+    "coverage": "ভাঙ্গুড়া থানা এলাকা",
+    "mobile": "01320128690",
+    "email": "oc.bhangura@police.gov.bd"
+  },
+  {
+ 
+    
+    "id": "elec-officer",
+    "category": "নির্বাচন অফিস",
+    "type": "নির্বাচন কর্মকর্তা",
+    "designation": "উপজেলা নির্বাচন কর্মকর্তা, ভাঙ্গুড়া",
+    "priority": 1,
+    "coverage": "ভাঙ্গুড়া উপজেলা",
+    "mobile": "01766626110",
+    "email": "ueobhangura7619@gmail.com"
+  },
+  {
+ 
+    
+    "id": "fire-service",
+    "category": "জরুরি সেবা",
+    "type": "ফায়ার সার্ভিস",
+    "designation": "স্টেশন অফিসার, ফরিদপুর ফায়ার স্টেশন",
+    "priority": 2,
+    "coverage": "ভাঙ্গুড়া",
+    "mobile": "01770527895"
+   
+  }
+]
+},
+{
+   "district": "পাবনা",
+    "upazila": "ফরিদপুর",
+    "offices":[
+  {
+   
+    "id": "Returning",
+    "category": "নির্বাচন কেন্দ্র",
+    "type": "রিটার্নিং",
+    "designation": "রিটার্নিং কর্মকর্তা ও জেলা প্রশাসক",
+    "priority": 1,
+    "coverage": " ফরিদপুর উপজেলা",
+    "mobile": "01332853401",
+    "email": "dcpabna@mopa.gov.bd"
+  },
+  {
+   
+    "id": "Ass-Returning",
+    "category": "নির্বাচন কেন্দ্র",
+    "type": "সহকারী রিটার্নিং",
+    "designation": "সহকারী রিটার্নিং ও উপজেলা নির্বাহী অফিসার,  ফরিদপুর",
+    "priority": 1,
+    "coverage": " ফরিদপুর",
+    "mobile": "01332853415",
+    "email": "unofaridpur@mopa.gov.bd"
+  },
+
+  {
+   
+   
+    "id": "sec-oc",
+    "category": "আইন-শৃঙ্খলা",
+    "type": "ওসি",
+    "designation": "ভারপ্রাপ্ত কর্মকর্তা, ফরিদপুর থানা",
+    "priority": 1,
+    "coverage": "ফরিদপুর থানা এলাকা",
+    "mobile": "01320128716",
+    "email": "ocfaridpurpabna@police.gov.bd"
+  },
+  {
+  
+    "id": "elec-officer",
+    "category": "নির্বাচন অফিস",
+    "type": "নির্বাচন কর্মকর্তা",
+    "designation": "উপজেলা নির্বাচন কর্মকর্তা",
+    "priority": 1,
+    "coverage": " ফরিদপুর উপজেলা",
+    "mobile": "01714800338",
+    "email": "ueofaridpurpabna07@gmail.com"
+  },
+  {
+   
+    "id": "fire-service",
+    "category": "জরুরি সেবা",
+    "type": "ফায়ার সার্ভিস",
+    "designation": "স্টেশন অফিসার,  ফরিদপুর ফায়ার স্টেশন",
+    "priority": 2,
+    "coverage": " ফরিদপুর",
+    "mobile": "01770527895"
+   
+  }
+]
+},
+{
+  "district": "পাবনা",
+  "upazila": "সাঁথিয়া",
+  "offices": [
+    {
+      "id": "Returning",
+      "category": "নির্বাচন কেন্দ্র",
+      "type": "রিটার্নিং",
+      "designation": "রিটার্নিং কর্মকর্তা ও জেলা প্রশাসক",
+      "priority": 1,
+      "coverage": "সাঁথিয়া উপজেলা",
+      "mobile": "01332853401",
+     
+      "email": "dcpabna@mopa.gov.bd"
+    },
+    {
+      "id": "Ass-Returning",
+      "category": "নির্বাচন কেন্দ্র",
+      "type": "সহকারী রিটার্নিং",
+      "designation": "সহকারী রিটার্নিং ও উপজেলা নির্বাহী অফিসার, সাঁথিয়া",
+      "priority": 1,
+      "coverage": "সাঁথিয়া",
+      "mobile": "01332853416",
+     
+      "email": "unosanthia@mopa.gov.bd"
+    },
+   
+    {
+      "id": "sec-oc",
+      "category": "আইন-শৃঙ্খলা",
+      "type": "ওসি",
+      "designation": "ভারপ্রাপ্ত কর্মকর্তা, সাঁথিয়া থানা",
+      "priority": 1,
+      "coverage": "সাঁথিয়া থানা এলাকা",
+      "mobile": "01320128794",
+     
+      "email": "xxx@police.gov.bd"
+    },
+    {
+      "id": "elec-officer",
+      "category": "নির্বাচন অফিস",
+      "type": "নির্বাচন কর্মকর্তা",
+      "designation": "উপজেলা নির্বাচন কর্মকর্তা",
+      "priority": 1,
+      "coverage": "সাঁথিয়া উপজেলা",
+      "mobile": "01550042637",
+     
+      "email": "ueoishwardipabna02@gmail.com"
+    },
+    {
+      "id": "fire-service",
+      "category": "জরুরি সেবা",
+      "type": "ফায়ার সার্ভিস",
+      "designation": "স্টেশন অফিসার, সাঁথিয়া",
+      "priority": 2,
+      "coverage": "সাঁথিয়া",
+      "mobile": "01784821901",
+     
+      "email": "fscdishwardi@gmail.com"
+    }
+  ]
+}
+
+]
+

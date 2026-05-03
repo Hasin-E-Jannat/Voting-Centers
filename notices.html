@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title> তালিকা</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background:#f9f9f9; }
+        h1 { text-align: center; margin-bottom: 20px; }
+        .notice-container { max-width: 800px; margin: 0 auto; }
+        .notice {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+        }
+        .notice h3 { margin: 0 0 5px 0; }
+        .notice p { margin: 5px 0; }
+        .notice a {
+            display: inline-block;
+            margin-top: 5px;
+            padding: 5px 10px;
+            background: #34A853;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .notice a:hover { opacity: 0.8; }
+    </style>
+</head>
+<body>
+
+<h1>গণ বিজ্ঞপ্তি এর তালিকা</h1>
+<div class="notice-container" id="noticeList">লোড হচ্ছে...</div>
+
+<script>
+async function loadNotices() {
+    const noticeList = document.getElementById("noticeList");
+    try {
+        const res = await fetch("notices.json");
+        const notices = await res.json();
+
+        if (!notices.length) {
+            noticeList.innerHTML = "<p>কোনো নোটিস পাওয়া যায়নি।</p>";
+            return;
+        }
+
+        let html = "";
+        notices.reverse().forEach(n => {
+            html += `
+                <div class="notice">
+                    <h3>${n.title}</h3>
+                    <p>${n.text}</p>
+                    <p style="font-size:12px; color:#555;">তারিখ: ${n.date}</p>
+                    ${n.file ? `<a href="uploads/${n.file}" download>ফাইল ডাউনলোড করুন</a>` : ''}
+                </div>
+            `;
+        });
+
+        noticeList.innerHTML = html;
+
+    } catch (err) {
+        console.error(err);
+        noticeList.innerHTML = "<p>নোটিস লোড করতে সমস্যা হয়েছে।</p>";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", loadNotices);
+</script>
+
+</body>
+</html>

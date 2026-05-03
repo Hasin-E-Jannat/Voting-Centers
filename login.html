@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Login</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f2f2f2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .login-container {
+        background: #fff;
+        padding: 40px 30px;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        width: 350px;
+        text-align: center;
+    }
+
+    h1 {
+        margin-bottom: 30px;
+        color: #333;
+        font-size: 28px;
+    }
+
+    label {
+        display: block;
+        text-align: left;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
+    }
+
+    input[type="text"], input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 16px;
+        box-sizing: border-box;
+        transition: 0.3s;
+    }
+
+    input[type="text"]:focus, input[type="password"]:focus {
+        border-color: #007BFF;
+        outline: none;
+        box-shadow: 0 0 5px rgba(0,123,255,0.3);
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background: #007BFF;
+        border: none;
+        border-radius: 6px;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #0056b3;
+    }
+</style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login for notice upload</h1>
+        <form id="loginForm">
+            <label>Username:</label>
+            <input type="text" id="username" placeholder="Enter username">
+            <label>Password:</label>
+            <input type="password" id="password" placeholder="Enter password">
+            <button type="submit">Login</button>
+        </form>
+
+    <script>
+        const adminUser = "admin";
+        const adminPass = "1234"; // change to secure password
+
+        document.getElementById('loginForm').addEventListener('submit', function(e){
+            e.preventDefault();
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+
+            if(user === adminUser && pass === adminPass){
+                localStorage.setItem('isLoggedIn', 'true');
+                location.href = 'admin.html';
+            } else {
+                alert('Invalid credentials');
+            }
+        });
+    </script>
+</body>
+</html>

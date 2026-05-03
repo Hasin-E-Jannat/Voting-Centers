@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Panel</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .admin-container {
+        background: #fff;
+        padding: 40px 30px;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        width: 400px;
+        text-align: center;
+    }
+
+    h1 {
+        margin-bottom: 30px;
+        color: #333;
+        font-size: 28px;
+    }
+
+    textarea {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 16px;
+        resize: vertical;
+        box-sizing: border-box;
+        transition: 0.3s;
+    }
+
+    textarea:focus {
+        border-color: #007BFF;
+        outline: none;
+        box-shadow: 0 0 5px rgba(0,123,255,0.3);
+    }
+
+    input[type="file"] {
+        margin-bottom: 20px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background: #007BFF;
+        border: none;
+        border-radius: 6px;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-bottom: 10px;
+    }
+
+    button:hover {
+        background: #0056b3;
+    }
+
+    #logoutBtn {
+        background: #dc3545;
+    }
+
+    #logoutBtn:hover {
+        background: #a71d2a;
+    }
+</style>
+</head>
+<body>
+   <div class="admin-container">
+    <h1>Admin Panel</h1>
+    <form id="noticeForm" action="upload.php" method="post" enctype="multipart/form-data">
+        <textarea name="title" placeholder="Title" required></textarea>
+        <textarea name="notice" placeholder="Write notice here..." required></textarea>
+        <input type="file" name="fileUpload">
+        <button type="submit">Upload Notice</button>
+    </form>
+    <button id="logoutBtn">Logout</button>
+</div>
+
+<script>
+    // Redirect to login if not logged in
+    if (localStorage.getItem('isLoggedIn') !== 'true') {
+        location.href = 'login.html';
+    }
+
+    // Logout button
+    document.getElementById('logoutBtn').addEventListener('click', function(){
+        localStorage.removeItem('isLoggedIn');
+        location.href = 'index.html';
+    });
+</script>
+
+
+</body>
+</html>

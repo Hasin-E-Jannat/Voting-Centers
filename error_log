@@ -1,0 +1,12 @@
+[18-Mar-2026 11:53:05 UTC] PHP Warning:  Undefined array key "title" in /home/votingcenters/votingcenters.xyz/upload.php on line 9
+[18-Mar-2026 11:53:05 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/votingcenters/votingcenters.xyz/upload.php on line 9
+[18-Mar-2026 11:53:05 UTC] PHP Warning:  Undefined array key "notice" in /home/votingcenters/votingcenters.xyz/upload.php on line 10
+[18-Mar-2026 11:53:05 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/votingcenters/votingcenters.xyz/upload.php on line 10
+[21-Mar-2026 02:01:19 UTC] PHP Warning:  Undefined array key "title" in /home/votingcenters/votingcenters.xyz/upload.php on line 9
+[21-Mar-2026 02:01:19 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/votingcenters/votingcenters.xyz/upload.php on line 9
+[21-Mar-2026 02:01:19 UTC] PHP Warning:  Undefined array key "notice" in /home/votingcenters/votingcenters.xyz/upload.php on line 10
+[21-Mar-2026 02:01:19 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/votingcenters/votingcenters.xyz/upload.php on line 10
+[15-Apr-2026 00:48:10 UTC] PHP Warning:  Undefined array key "title" in /home/votingcenters/votingcenters.xyz/upload.php on line 9
+[15-Apr-2026 00:48:10 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/votingcenters/votingcenters.xyz/upload.php on line 9
+[15-Apr-2026 00:48:10 UTC] PHP Warning:  Undefined array key "notice" in /home/votingcenters/votingcenters.xyz/upload.php on line 10
+[15-Apr-2026 00:48:10 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/votingcenters/votingcenters.xyz/upload.php on line 10

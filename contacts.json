@@ -1,0 +1,50 @@
+[
+{
+  "district": "পাবনা",
+  "upazila": "ঈশ্বরদী",
+  "offices": [
+    {
+      "id": "sec-asp",
+      "category": "আইন-শৃঙ্খলা",
+      "type": "অতিরিক্ত পুলিশ সুপার",
+      "designation": "অতিরিক্ত পুলিশ সুপার, ঈশ্বরদী সার্কেল",
+      "priority": 1,
+      "coverage": "ঈশ্বরদী পৌরসভা ও সব ইউনিয়ন",
+      "mobile": "01320-xxxxxx",
+      "phone_office": "02xxxxxxxxx",
+      "email": "asp.ishwardi@police.gov.bd"
+    },
+    {
+      "id": "sec-oc",
+      "category": "আইন-শৃঙ্খলা",
+      "type": "ওসি",
+      "designation": "ভারপ্রাপ্ত কর্মকর্তা, ঈশ্বরদী থানা",
+      "priority": 1,
+      "coverage": "ঈশ্বরদী থানা এলাকা",
+      "mobile": "01320-xxxxxx",
+      "email": "oc.ishwardi@police.gov.bd"
+    },
+    {
+      "id": "elec-officer",
+      "category": "নির্বাচন অফিস",
+      "type": "নির্বাচন কর্মকর্তা",
+      "designation": "উপজেলা নির্বাচন কর্মকর্তা",
+      "priority": 1,
+      "coverage": "ঈশ্বরদী উপজেলা",
+      "mobile": "01xxxxxxxxx",
+      "email": "ueoishwardipabna02@gmail.com"
+    },
+    {
+      "id": "fire-service",
+      "category": "জরুরি সেবা",
+      "type": "ফায়ার সার্ভিস",
+      "designation": "স্টেশন অফিসার, ঈশ্বরদী ফায়ার স্টেশন",
+      "priority": 2,
+      "coverage": "ঈশ্বরদী",
+      "mobile": "01xxxxxxxxxxx",
+      "phone_office": "02xxxxxxxxx"
+    }
+  ]
+}
+]
+

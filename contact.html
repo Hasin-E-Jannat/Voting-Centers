@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>যোগাযোগ তালিকা</title>
+<style>
+  :root {
+    --bg: #ece6e6;
+    --card: #ffffff;
+    --accent: #1a4fa3;
+    --secondary: #2563eb;
+    --muted: #6b7280;
+    --shadow: rgba(0,0,0,0.08);
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+    background: var(--bg);
+    color: #111;
+    margin: 0;
+  }
+  h2 { text-align:center; margin:20px 0; color: var(--accent); }
+
+  .filter-row {
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+    margin-bottom:20px;
+  }
+
+  select {
+    padding:10px 12px;
+    border-radius:8px;
+    border:1px solid #ddd;
+    min-width:180px;
+    font-size:14px;
+    outline: none;
+  }
+
+  #typeButtons { text-align:center; margin-bottom:20px; }
+  
+  .cat-btn {
+    padding:8px 16px;
+    margin:4px;
+    border:1px solid #ccc;
+    border-radius:20px;
+    cursor:pointer;
+    background:#fff;
+    font-size:13px;
+    transition:0.2s;
+  }
+  .cat-btn:hover, .cat-btn.active { background: var(--secondary); color:#fff; border-color: var(--secondary); }
+
+  #contactContainer {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap:20px;
+    padding:0 10px 40px 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .contact-card {
+    background: var(--card);
+    border-radius:12px;
+    padding:18px;
+    box-shadow: 0 4px 12px var(--shadow);
+    display:flex;
+    flex-direction:column;
+    position: relative;
+    border-top: 4px solid var(--accent);
+  }
+  .contact-card .location-tag {
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 5px;
+    display: block;
+    text-transform: uppercase;
+  }
+  .contact-card h3 { margin:0 0 8px; font-size:17px; color: var(--accent); }
+  .contact-card p { margin:3px 0; font-size:14px; color:#444; }
+  .contact-card p strong { color:#111; }
+
+  .actions {
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:15px;
+  }
+  .actions a, .actions button {
+    flex: 1;
+    padding:8px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:13px;
+    text-decoration:none;
+    color:#fff;
+    background: var(--secondary);
+    text-align: center;
+    transition:0.2s;
+  }
+  .actions button { background:#10b981; }
+  .actions a:hover, .actions button:hover { opacity:0.8; }
+
+  .back-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    margin-bottom: 20px;
+  }
+
+  /* Professional Grounded Footer */
+.doict-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95); /* Clean white glass effect */
+    backdrop-filter: blur(10px);
+    border-top: 1px solid #e2e8f0; /* Soft border divider */
+    padding: 8px 20px;
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+}
+
+.doict-footer a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #1b1c1d; /* Professional slate grey */
+    transition: color 0.3s ease;
+}
+
+.doict-footer a:hover {
+    color: #1fa5ae; /* Matches your deep teal highlight */
+}
+
+.doict-footer img {
+    height: 24px;
+    width: auto;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.doict-footer a:hover img {
+    filter: grayscale(0); /* Colors return on hover */
+    opacity: 1;
+}
+
+.doict-footer span {
+    font-family: 'Anuphan', sans-serif; /* Your ultra-clear font */
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+/* On Mobile: Ensure it doesn't cover content */
+@media (max-width: 768px) {
+    .doict-footer {
+        padding: 10px;
+    }
+    .doict-footer span {
+        font-size: 11px;
+    }
+}
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-btn">← ফিরে যান</a>
+
+<h2>যোগাযোগ তালিকা</h2>
+
+<div class="filter-row">
+  <select id="districtFilter" onchange="loadUpazila()">
+    <option value="">সকল জেলা</option>
+  </select>
+  <select id="upazilaFilter" onchange="applyFilters()">
+    <option value="">সকল উপজেলা</option>
+  </select>
+</div>
+
+<div id="typeButtons"></div>
+
+<h3 id="activeTitle" style="text-align:center; margin-bottom:20px; color: #555;">লোড হচ্ছে...</h3>
+
+<div id="contactContainer"></div>
+
+<script>
+let DB = []; 
+let ACTIVE_TYPE = null;
+
+async function loadData() {
+  try {
+    const resp = await fetch('contact.json', {cache:'no-cache'});
+    DB = await resp.json();
+    initFilters();
+    applyFilters(); 
+  } catch(e) {
+    console.error("Data load failed:", e);
+    document.getElementById("activeTitle").textContent = "ডেটা লোড করতে সমস্যা হয়েছে।";
+  }
+}
+
+function initFilters() {
+  const df = document.getElementById("districtFilter");
+  const districts = [...new Set(DB.map(x => x.district))];
+  
+  df.innerHTML = `<option value="">সকল জেলা</option>` +
+    districts.map(d => `<option value="${d}">${d}</option>`).join("");
+
+  // পাবনা ডিফল্ট সিলেক্ট করার লজিক
+  if (districts.includes("পাবনা")) {
+    df.value = "পাবনা";
+    loadUpazila(); // উপজেলা লোড করবে
+  }
+}
+
+function loadUpazila() {
+  const selectedDistrict = document.getElementById("districtFilter").value;
+  const uf = document.getElementById("upazilaFilter");
+  let upazilas = [];
+  if(selectedDistrict) {
+    upazilas = [...new Set(DB.filter(x => x.district === selectedDistrict).map(x => x.upazila))];
+  }
+  uf.innerHTML = `<option value="">সকল উপজেলা</option>` +
+    upazilas.map(u => `<option value="${u}">${u}</option>`).join("");
+  applyFilters();
+}
+
+function applyFilters() {
+  const district = document.getElementById("districtFilter").value;
+  const upazila = document.getElementById("upazilaFilter").value;
+
+  let filteredDB = DB;
+  if(district) filteredDB = filteredDB.filter(x => x.district === district);
+  if(upazila) filteredDB = filteredDB.filter(x => x.upazila === upazila);
+
+  // সব অফিসের ডাটা একটি অ্যারেতে সংগ্রহ করা
+  let allOffices = [];
+  filteredDB.forEach(item => {
+    if(item.offices) {
+      item.offices.forEach(off => {
+        allOffices.push({
+          ...off,
+          districtName: item.district,
+          upazilaName: item.upazila
+        });
+      });
+    }
+  });
+
+  renderTypeButtons(allOffices);
+  renderContacts(allOffices);
+}
+
+function renderTypeButtons(offices) {
+  const container = document.getElementById("typeButtons");
+  const types = [...new Set(offices.map(o => o.type))];
+
+  let btnHtml = `<button class="cat-btn ${!ACTIVE_TYPE ? 'active' : ''}" onclick="setType(null)">সব</button>`;
+  btnHtml += types.map(t => 
+    `<button class="cat-btn ${ACTIVE_TYPE === t ? 'active' : ''}" onclick="setType('${t}')">${t}</button>`
+  ).join("");
+  
+  container.innerHTML = btnHtml;
+}
+
+function setType(t) {
+  ACTIVE_TYPE = t;
+  applyFilters();
+}
+
+function renderContacts(offices) {
+  const container = document.getElementById("contactContainer");
+  let list = offices;
+  
+  if(ACTIVE_TYPE) {
+    list = list.filter(o => o.type === ACTIVE_TYPE);
+  }
+
+  document.getElementById("activeTitle").textContent = ACTIVE_TYPE ? ACTIVE_TYPE : "সব যোগাযোগ (" + list.length + ")";
+
+  if(list.length === 0) {
+    container.innerHTML = `<p style="text-align:center; grid-column: 1/-1;">কোন তথ্য পাওয়া যায়নি।</p>`;
+    return;
+  }
+
+  container.innerHTML = list.map(o => `
+    <div class="contact-card">
+      <span class="location-tag">📍 ${o.districtName} > ${o.upazilaName}</span>
+      <h3>${o.type}</h3>
+      <p><strong>${o.designation || ""}</strong></p>
+      ${o.name ? `<p>নাম: ${o.name}</p>` : ""}
+      <p>মোবাইল: ${o.mobile || "—"}</p>
+      ${o.phone_office ? `<p>অফিস ফোন: ${o.phone_office}</p>` : ""}
+      ${o.email ? `<p>ইমেইল: ${o.email}</p>` : ""}
+
+      <div class="actions">
+        ${o.mobile ? `<a href="tel:${o.mobile}">📞 কল</a>` : ""}
+        ${o.mobile ? `<button onclick="copyNumber('${o.mobile}')">📋 কপি</button>` : ""}
+        ${o.email ? `<a href="mailto:${o.email}">✉️ ইমেইল</a>` : ""}
+      </div>
+    </div>
+  `).join("");
+}
+
+function copyNumber(num) {
+  navigator.clipboard.writeText(num).then(() => {
+    alert("নম্বর কপি হয়েছে: " + num);
+  }).catch(() => alert("কপি করা সম্ভব হয়নি"));
+}
+
+loadData();
+</script>
+
+<footer class="doict-footer">
+  <a href="http://doict.ishurdi.pabna.gov.bd/" target="_blank" rel="noopener">
+    <img src="doict-logo.png" alt="DoICT Logo">
+    <span><b>Hasin-E-Jannat,DoICT Ishwardi © 2026</b></span>
+  </a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8" />
+<title>Voting Centers Map</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+
+<style>
+  html, body { height: 100%; margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+  #map { height: 100vh; width: 100%; }
+
+  /* UI Components */
+  .filter-bar {
+    position: fixed; top: 12px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 8px; background: #fff; padding: 8px 10px;
+    border-radius: 10px; box-shadow: 0 4px 16px rgba(0,0,0,.25); z-index: 3000;
+  }
+  .filter-bar select { padding: 6px 8px; font-size: 13px; border-radius: 6px; border: 1px solid #ccc; outline: none; }
+
+  .mobile-bar {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 12px; background: #ffffff; padding: 10px 14px;
+    border-radius: 999px; box-shadow: 0 6px 20px rgba(0,0,0,.25); z-index: 3000;
+  }
+  .mobile-bar button {
+    position: relative; width: 48px; height: 48px; border-radius: 50%; border: none;
+    font-size: 20px; background: #1a73e8; color: #fff; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; transition: background 0.2s;
+  }
+  .mobile-bar button:active { transform: scale(0.92); }
+  
+  /* Tooltip Labels */
+  .center-label { 
+    background: white; 
+    border: 1px solid #666; 
+    border-radius: 4px; 
+    padding: 2px 5px; 
+    font-weight: bold; 
+    font-size: 11px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  .footer-credit { position: fixed; right: 10px; bottom: 10px; background: rgba(0,0,0,0.5); color: #fff; font-size: 11px; padding: 4px 8px; border-radius: 4px; z-index: 1000; }
+</style>
+</head>
+
+<body>
+
+<div id="map"></div>
+
+<div class="filter-bar">
+  <select id="districtFilter"><option value="">জেলা</option></select>
+  <select id="upazilaFilter"><option value="">উপজেলা</option></select>
+  <select id="unionFilter"><option value="">ইউনিয়ন</option></select>
+</div>
+
+<div class="mobile-bar">
+  <button onclick="goToMyLocation()" title="আমার লোকেশন">📍</button>
+  <button onclick="goToNearest()" title="নিকটতম কেন্দ্র">🧭</button>
+  <button onclick="openGoogleMaps()" title="গুগল ম্যাপে খুলুন">🗺</button>
+</div>
+
+<div class="footer-credit">DoICT Ishwardi © 2026</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+
+<script>
+/* ================= GLOBAL STATE ================= */
+const PABNA_CENTER = [23.99874, 89.233604];
+let allCenters = [];
+let areaLinks = {};
+let userLatLng = null;
+let userMarker = null;
+
+const map = L.map('map').setView(PABNA_CENTER, 9);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+
+const clusters = L.markerClusterGroup({ disableClusteringAtZoom: 15 });
+map.addLayer(clusters);
+
+/* ================= UTILS ================= */
+function toBanglaNumber(n) {
+  return n?.toString().replace(/\d/g, d => "০১২৩৪৫৬৭৮৯"[d]) || '০';
+}
+
+function getIcon(type) {
+  let color = 'green';
+  if (type?.includes('পুরুষ')) color = 'blue';
+  if (type?.includes('মহিলা')) color = 'violet';
+  return new L.Icon({
+    iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-${color}.png`,
+    shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+    iconSize: [25, 41], iconAnchor: [12, 41]
+  });
+}
+
+/* ================= STATIC MARKERS ================= */
+// জেলা প্রশাসকের কার্যালয় মার্কার
+L.marker(PABNA_CENTER, {
+  icon: L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+    shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+    iconSize: [25, 41], iconAnchor: [12, 41]
+  }),
+  zIndexOffset: 1000
+})
+.addTo(map)
+.bindTooltip('জেলা প্রশাসকের কার্যালয়, পাবনা', { permanent: true, direction: 'top', offset: [0, -36], className: 'center-label' })
+.bindPopup('<b>জেলা প্রশাসকের কার্যালয়, পাবনা</b>');
+
+/* ================= DATA LOADING ================= */
+Promise.all([
+  fetch('centers_info.json').then(r => r.json()),
+  fetch('mymaplinks.json').then(r => r.json()),
+  fetch('upazila_pabna.json').then(r => r.json()).catch(() => ({ upazilas: [] }))
+]).then(([centers, links, upazilaData]) => {
+  allCenters = centers;
+  areaLinks = links;
+  initFilters(centers);
+  loadCenters(centers);
+  loadUpazilaDots(upazilaData.upazilas);
+}).catch(err => console.error("Data Load Error:", err));
+
+function loadCenters(data) {
+  clusters.clearLayers();
+  data.forEach(c => {
+    if (!c.lat || !c.lng) return;
+    const m = L.marker([c.lat, c.lng], { icon: getIcon(c.type) })
+      .bindTooltip(`${toBanglaNumber(c.id)}: ${c.name}`, { 
+          permanent: true, // নাম সবসময় দেখা যাবে
+          direction: 'top', 
+          offset: [0, -35], 
+          className: 'center-label' 
+      })
+      .bindPopup(`
+        <b>${c.name}</b><br>${c.upazila}, ${c.union}<br><br>
+        <button onclick="openDirections(${c.lat},${c.lng})" style="width:100%; cursor:pointer; background:#d32f2f; color:white; border:none; padding:8px; border-radius:4px; font-weight:bold;">গুগল ম্যাপে দিকনির্দেশনা</button>
+      `);
+    clusters.addLayer(m);
+  });
+}
+
+function loadUpazilaDots(upazilas) {
+  upazilas.forEach(u => {
+    const customDot = L.divIcon({
+      className: '', 
+      html: `<div style="background-color: #B22222; width: 12px; height: 12px; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 5px rgba(0,0,0,0.5); cursor: pointer;"></div>`,
+      iconSize: [12, 12],
+      iconAnchor: [6, 6]
+    });
+
+    L.marker([u.lat, u.lng], { icon: customDot })
+      .addTo(map)
+      .bindTooltip(u.name, { permanent: false, direction: 'right' })
+      .on('click', (e) => map.setView(e.latlng, 13, { animate: true, duration: 1.5 }));
+  });
+}
+
+/* ================= FILTERS ================= */
+const dSel = document.getElementById('districtFilter');
+const uSel = document.getElementById('upazilaFilter');
+const unSel = document.getElementById('unionFilter');
+
+function initFilters(data) {
+  const districts = [...new Set(data.map(c => c.district))];
+  districts.forEach(d => dSel.add(new Option(d, d)));
+}
+
+dSel.onchange = () => {
+  uSel.length = 1; unSel.length = 1;
+  const filteredUpazilas = [...new Set(allCenters.filter(c => c.district === dSel.value).map(c => c.upazila))];
+  filteredUpazilas.forEach(u => uSel.add(new Option(u, u)));
+  applyFilters();
+};
+
+uSel.onchange = () => {
+  unSel.length = 1;
+  const filteredUnions = [...new Set(allCenters.filter(c => c.upazila === uSel.value).map(c => c.union))];
+  filteredUnions.forEach(un => unSel.add(new Option(un, un)));
+  applyFilters();
+};
+
+unSel.onchange = applyFilters;
+
+function applyFilters() {
+  let filtered = allCenters;
+  if (dSel.value) filtered = filtered.filter(c => c.district === dSel.value);
+  if (uSel.value) filtered = filtered.filter(c => c.upazila === uSel.value);
+  if (unSel.value) filtered = filtered.filter(c => c.union === unSel.value);
+  
+  loadCenters(filtered);
+  if (filtered.length) {
+    const bounds = L.latLngBounds(filtered.map(c => [c.lat, c.lng]));
+    map.fitBounds(bounds, { padding: [50, 50] });
+  }
+}
+
+/* ================= ACTIONS ================= */
+function openGoogleMaps() {
+  const district = dSel.value;
+  const upazila = uSel.value;
+  let finalUrl = areaLinks["default"] || "https://surl.li/sbtldm";
+  
+  if (upazila && areaLinks[upazila]) finalUrl = areaLinks[upazila];
+  else if (district && areaLinks[district]) finalUrl = areaLinks[district];
+
+  window.open(finalUrl, '_blank');
+}
+
+function openDirections(lat, lng) {
+  window.open(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`, '_blank');
+}
+
+function goToMyLocation() {
+  navigator.geolocation.getCurrentPosition(pos => {
+    userLatLng = [pos.coords.latitude, pos.coords.longitude];
+    map.flyTo(userLatLng, 15);
+    if (userMarker) map.removeLayer(userMarker);
+    userMarker = L.circleMarker(userLatLng, { radius: 8, color: '#1a73e8', fillOpacity: 0.8 }).addTo(map).bindPopup('আপনি এখানে').openPopup();
+  }, () => alert('লোকেশন পাওয়া যায়নি'));
+}
+
+function goToNearest() {
+  if (!userLatLng) return alert('প্রথমে আপনার লোকেশন (📍) বাটনে ক্লিক করুন');
+  let near = null, minD = Infinity;
+  allCenters.forEach(c => {
+    let d = map.distance(userLatLng, [c.lat, c.lng]);
+    if (d < minD) { minD = d; near = c; }
+  });
+  if (near) openDirections(near.lat, near.lng);
+}
+</script>
+</body>
+</html>
